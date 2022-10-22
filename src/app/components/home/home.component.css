@@ -1,0 +1,13 @@
+.product-baner button {
+   position: absolute;
+   top: 80%;
+   left: 20%;
+}
+
+.title-game{
+   text-align: center;
+   text-transform: uppercase;
+   font-weight: bold;
+   font-size: 32px;
+   margin: 0;
+}

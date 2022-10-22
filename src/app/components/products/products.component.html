@@ -1,0 +1,77 @@
+<div class="my-container mx-auto border border-dark">
+  <!-- Toolbar -->
+  <div class="border mb-5 p-3 d-flex justify-content-around sticky-top bg-secondary text-dark">
+    <div class="btn-group" role="group">
+      <button
+        type="button"
+        class="btn btn-outline-light"
+        [ngClass]="{ active: view === 'grid' }"
+        (click)="view = 'grid'"
+      >
+        Grid
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-light"
+        [ngClass]="{ active: view === 'list' }"
+        (click)="view = 'list'"
+      >
+        List
+      </button>
+    </div>
+
+    <div class="w-50 d-flex">
+      <span class="me-5 d-flex align-items-center fs-5 fw-bold">Sort By</span>
+      <div class="btn-group" role="group">
+        <button
+          type="button"
+          class="btn btn-outline-light"
+          [ngClass]="{ 'active': sortBy === 'default' }"
+          (click)="sortBy = 'default'"
+        >
+          Default
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-light"
+          [ngClass]="{ 'active': sortBy === 'htl' }"
+          (click)="sortBy = 'htl'"
+        >
+          Price (High to Low)
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-light"
+          [ngClass]="{ 'active': sortBy === 'lth' }"
+          (click)="sortBy = 'lth'"
+        >
+          Price (Low to High)
+        </button>
+      </div>
+    </div>
+  </div>
+
+   <div class="border p-5">
+
+      <!-- Grid view -->
+      <div class="grid-view" *ngIf=" view==='grid' ">
+         <div class="row g-5">
+            <div class="col-3" *ngFor="let product of [1,1,1,1,1]" >
+               <app-product [view]="'grid'"></app-product>
+            </div>
+         </div>
+      </div>
+
+      <!-- List View -->
+      <div class="list-view" *ngIf=" view==='list' ">
+         <div class="col">
+            <div class="col m-3" *ngFor="let product of [1,1,1,1,1]" >
+               <app-product [view]="'list'" ></app-product>
+            </div>
+         </div>
+      </div>
+
+   </div>
+
+  
+</div>
