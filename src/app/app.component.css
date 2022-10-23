@@ -1,0 +1,6 @@
+main {
+   margin-top: 4rem;
+   padding: 1rem;
+   min-height: calc(100vh - 8rem);
+   z-index: 1;
+}

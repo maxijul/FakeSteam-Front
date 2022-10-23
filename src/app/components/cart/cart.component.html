@@ -1,0 +1,64 @@
+<div class="my-container mx-auto border border-dark">
+   <div class="p-4 border my-rounded-corner">
+      <h3 class="w-25 border text-center py-2 my-rounded-corner">Current Cart</h3>
+      <div class="mt-5">
+         <div class="d-grid w-50 mx-auto mb-3">
+            <button type="button" class="btn btn-outline-success fs-4">Order</button>
+         </div>
+         <table class="table w-50 mx-auto table-bordered table-hover my-shadow">
+            <tbody>
+               <tr>
+                  <td>Total Items</td>
+                  <td class="fs-5 fw-bold">5</td>
+               </tr>
+               <tr>
+                  <td>Total Price</td>
+                  <td class="fs-5 fw-bold text-danger">10,000</td>
+               </tr>
+               <tr>
+                  <td>Shipping Charges</td>
+                  <td class="fs-5 fw-bold text-danger">1,000</td>
+               </tr>
+               <tr>
+                  <td>Discount</td>
+                  <td class="fs-5 fw-bold text-success">200</td>
+               </tr>
+               <tr>
+                  <td>You Have to Pay</td>
+                  <td class="fs-5 fw-bold text-success">10,800</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <div class="current-cart-items w-75 mx-auto mt-5">
+         <h4>Cart Items</h4>
+         <div class="row mt-4 g-0">
+            <div class="col-6 py-3 px-2" *ngFor="let i of [1,1,1,1,1]">
+               <app-product [view]="'currentCartItem'"></app-product>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="mt-5 p-4 border my-rounded-corner">
+      <h3 class="w-25 border text-center py-2 mb-5 my-rounded-corner">Previous Carts</h3>
+
+      <div class="card mb-5" *ngFor="let cart of [1,1,1,1,1,1]" >
+         <div class="card-header d-flex fw-bold justify-content-between align-items-center">
+            <span class="time">Ordered On : <span class="fs-5">22 October 2022</span></span>
+            <span class="count">Items: 5</span>
+            <span class="price">Price Paid : <span class="fs-5">10,000</span></span>
+         </div>
+
+         <div class="cart-body px-4 py-2">
+            <div class="row g-0">
+               <div class="col-2 px-2 py-2" *ngFor="let i of [1,1,1,1,1]" >
+                  <app-product [view]="'previousCartItem'"></app-product>
+               </div>
+            </div>
+         </div>
+
+      </div>
+   </div>
+
+</div>

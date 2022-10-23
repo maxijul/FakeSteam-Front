@@ -1,0 +1,42 @@
+<header class="w-100 h-100 bg-dark px-4 my-shadow d-flex justify-content-between align-items-center">
+   <div class="text-light fs-3 fw-bold fst-italic m-2">
+      <span>Fake Steam</span>
+   </div>
+
+   <div class="btn-toolbar m-2" role="toolbar">
+      <div class="btn-group btn-group-lg me-3" role="group">
+         <button type="button" class="btn btn-outline-light" routerLink="/home">Home</button>
+         <div class="btn-group" role="group">
+            <button type="button" class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown">
+               Categories
+            </button>
+            <ul class="dropdown-menu fs-5">
+               <ng-container *ngFor="let item of navigationList; let i = index;">
+                  <li *ngFor="let category of item.category" [style.cursor]="'pointer'" >
+                     <a class="dropdown-item" OpenProducts [category]="{id: 0, 'category': category}">
+                        {{ category | titlecase }}
+                     </a>
+                  </li>
+                  <li *ngIf="i !== navigationList.length - 1">
+                     <hr class="dropdown-divider">
+                  </li>
+               </ng-container>
+            </ul>
+         </div>
+      </div>
+
+      <div class="btn-group btn-group-lg me-2" role="group">
+         <button type="button" class="btn btn-outline-light">Login</button>
+         <button type="button" class="btn btn-outline-light">Register</button>
+         <button type="button" class="btn btn-outline-light">Account</button>
+         <button type="button" class="btn btn-outline-light" routerLink="/cart">Cart</button>
+         <button type="button" class="btn btn-outline-light" routerLink="/order">Orders</button>
+         <button type="button" class="btn btn-outline-light">Logout</button>
+      </div>
+
+   </div>
+
+
+</header>
+
+<!--* MODAL LOGIN -->
