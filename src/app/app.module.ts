@@ -18,6 +18,8 @@ import { OpenProductsDirective } from './directives/open-products.directive';
 import { OpenProductDetailsDirective } from './directives/open-product-details.directive';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -35,12 +37,13 @@ import { LoginComponent } from './components/login/login.component';
     OpenProductsDirective,
     OpenProductDetailsDirective,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

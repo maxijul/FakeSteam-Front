@@ -17,10 +17,6 @@ export class OpenProductsDirective {
         category: this.category.category
       }
     }) 
-
-      
-    
-    console.log(this.category)
   }
 
   constructor(private router: Router) { }

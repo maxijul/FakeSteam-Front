@@ -19,3 +19,10 @@ img {
 img:hover {
    transform: scale(1.05);
 }
+
+.grid-view .description,
+.grid-view .title {
+   height: 50px;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}

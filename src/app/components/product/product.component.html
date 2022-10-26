@@ -1,100 +1,101 @@
-<!--* GRID VIEW -->
 <div class="grid-view" *ngIf="view === 'grid'">
    <div class="card text-center">
-      <div class="card-header fw-bold fs-5 text-success">
-         Header
-      </div>
+       <div class="card-header fw-bold fs-5 text-success">
+           Header
+       </div>
 
-      <div class="overflow-hidden d-flex justify-content-center align-items-center">
-         <img src="../../../assets/images/action/acBlackFlag.jpg" alt="AC Black Flag" class="card-img-top"
-         OpenProductDetails [productId]="1">
-         
-      </div>
+       <div class="overflow-hidden d-flex justify-content-center align-items-center">
+           <img src="../../assets/Images/{{ product.productCategory.category }}/{{ product.id }}/1.jpg" alt=""
+                class="card-img-top" OpenProductDetails [productId]="product.id">
+       </div>
 
-      <div class="card-body">
-         <h5 class="card-title title">Title</h5>
-         <h6 class="card-subtitle my-2 text-primary">12 products are available</h6>
-         <p class="card-text description">Description</p>
-      </div>
+       <div class="card-body">
+           <h5 class="card-title title"> {{product.title}} </h5>
+           <h6 class="card-subtitle my-2 text-primary"> {{product.quantity}} products are available. </h6>
+           <p class="card-text description"> {{product.description}} </p>
+       </div>
 
-      <div class="card-body">
-         <h5 class="card-title text-success"> Final Price
-            <span class="text-primary"> -20%
-            </span>
-         </h5>
-         <h6 class="card-subtitle text-danger text-decoration-line-through">
-            Original Price
-         </h6>
-      </div>
+       <div class="card-body">
+           <h5 class="card-title text-success">
+               {{utilityService.applyDiscount(product.price, product.offer.discount) | currency}}
+               <span class="text-primary"> -{{product.offer.discount}}%
+               </span>
+           </h5>
+           <h6 class="card-subtitle text-danger text-decoration-line-through">
+               {{product.price | currency}}
+           </h6>
+       </div>
 
-      <div class="card-footer d-grid gap-2">
-         <button class="btn btn-outline-success" type="button">Add to Cart</button>
-      </div>
+       <div class="card-footer d-grid gap-2">
+           <button type="button" class="btn btn-outline-success">
+               Add to Cart
+           </button>
+       </div>
    </div>
 </div>
 
-<!--* LIST VIEW -->
 <div class="list-view" *ngIf="view === 'list'">
    <div class="card">
-      <div class="row">
-         <div class="col-md-4 overflow-hidden f-flex justify-content-center align-items-center">
-            <img src="../../../assets/images/action/acBlackFlag.jpg" alt="acBlackFlag" class="img-fluid rounded-start w-50"
-            OpenProductDetails [productId]="1">
-         </div>
-         <div class="col d-flex flex-column">
-            <div class="card-header text-center">
-               Header
-            </div>
+       <div class="row g-0">
+           <div class="col-md-4 overflow-hidden d-flex justify-content-center align-items-center">
+               <img src="../../assets/Images/{{product.productCategory.category}}/{{product.id}}/1.jpg"
+                    class="img-fluid rounded-start" alt="Product Image" OpenProductDetails [productId]="product.id">
+           </div>
+           <div class="col d-flex flex-column">
+               <div class="card-header text-center">
+                   Header
+               </div>
 
-            <div class="card-body">
-               <h5 class="card-title title">Title</h5>
-               <p class="card-text description">Description</p>
-               <h6 class="card-subtitle mb-3 text-primary">11 products are available</h6>
-            </div>
+               <div class="card-body">
+                   <h5 class="card-title title"> {{product.title}} </h5>
+                   <p class="card-text description"> {{product.description}} </p>
+                   <h6 class="card-subtitle mb-3 text-primary"> {{product.quantity}} products are available. </h6>
+               </div>
 
-            <div class="card-body">
-               <h4 class="card-title text-muted">Pricing</h4>
-               <h2 class="card-title text-success">
-                  Final Price
-                  <span class="text-primary">-20%</span>
-               </h2>
-               <h5 class="card-subtitle text-danger text-decoration-line-through">Original Price</h5>
-            </div>
+               <div class="card-body">
+                   <h4 class="card-title text-muted">Pricing</h4>
+                   <h2 class="card-title text-success">
+                       {{utilityService.applyDiscount(product.price, product.offer.discount)}}
+                       <span class="text-primary"> -{{product.offer.discount}}% </span>
+                   </h2>
+                   <h5 class="card-subtitle text-danger text-decoration-line-through">
+                       {{product.price}}
+                   </h5>
+               </div>
 
-            <div class="card-footer text-muted d-grid gap-2">
-               <button class="btn btn-outline-success" type="button">Add to Cart</button>
-            </div>
-
-         </div>
-      </div>
+               <div class="card-footer text-muted d-grid gap-2">
+                   <button type="button" class="btn btn-outline-success">
+                       Add to Cart
+                   </button>
+               </div>
+           </div>
+       </div>
    </div>
 </div>
 
-<!--* Cart Item View -->
+<!-- Cart Item View -->
 <div class="cart-item-view" *ngIf="view === 'currentCartItem'">
    <div class="card">
-      <div class="row g-0">
-         <div class="col-4 overflow-hidden d-flex justify-content-center align-items-center">
-            <img src="../../../assets/images/action/acBlackFlag.jpg" alt="Product Image" class="img-fluid rounded-start"
-            OpenProductDetails [productId]="1">
-         </div>
-         <div class="col-8">
-            <div class="card-body">
-               <h5 class="card-title title">Title</h5>
-               <h5 class="card-title text-success">Final Price
-                  <span class="text-primary">11 products are available</span>
-               </h5>
-               <h6 class="card-subtitle text-danger text-decoration-line-through">
-                  Original Price
-               </h6>
-            </div>
+       <div class="row g-0">
 
-            <div class="card-footer text-muted d-grid gap-2">
-               <button type="button" class="btn btn-outline-danger">Remove From Cart</button>
-            </div>
+           <div class="col-4 overflow-hidden d-flex justify-content-center align-items-center">
+               <img src="../../assets/Images/{{product.productCategory.category}}/{{product.id}}/1.jpg"
+                    class="img-fluid rounded-start" alt="Product Image" OpenProductDetails [productId]="product.id">
+           </div>
+           <div class="col-8">
+               <div class="card-body">
+                   <h5 class="card-title title"> {{product.title}} </h5>
+                   <h5 class="card-title text-success">
+                       {{utilityService.applyDiscount(product.price, product.offer.discount)}}
+                       <span class="text-primary"> -{{product.offer.discount}}% </span>
+                   </h5>
+                   <h6 class="card-subtitle text-danger text-decoration-line-through">
+                       {{ product.price }}
+                   </h6>
+               </div>
+           </div>
 
-         </div>
-      </div>
+       </div>
    </div>
 </div>
 
@@ -102,13 +103,12 @@
    <div class="card text-center">
 
        <div class="overflow-hidden d-flex justify-content-center align-items-center">
-           <img src="../../../assets/images/action/acBlackFlag.jpg" alt="" class="card-img-top"
-           OpenProductDetails [productId]="1">
-                
+           <img src="../../assets/Images/{{product.productCategory.category}}/{{product.id}}/1.jpg" alt=""
+                class="card-img-top" OpenProductDetails [productId]="product.id">
        </div>
 
        <div class="card-body">
-           <h5 class="card-title title"> Title </h5>
+           <h5 class="card-title title"> {{product.title}} </h5>
        </div>
    </div>
 </div>

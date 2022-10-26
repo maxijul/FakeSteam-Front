@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, Type, ViewChild, ViewContainerRef } from '@angular/core';
-import { NavigationItem } from 'src/app/models/models';
+import { Category, NavigationItem } from 'src/app/models/models';
+import { NavigationService } from 'src/app/services/navigation.service';
 import { LoginComponent } from '../login/login.component';
 import { RegisterComponent } from '../register/register.component';
 
@@ -24,9 +25,13 @@ export class HeaderComponent implements OnInit {
       category: ["retro"]
     },
   ]
-  constructor() { }
+  constructor(private navigationService: NavigationService) { }
 
   ngOnInit(): void {
+    //* Get Category List
+    this.navigationService
+    .getCategoryList()
+    .subscribe()  
   }
 
   openModal(name: string): void{
