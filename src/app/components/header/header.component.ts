@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, Type, ViewChild, ViewContainerRef } from '@angular/core';
 import { Category, NavigationItem } from 'src/app/models/models';
 import { NavigationService } from 'src/app/services/navigation.service';
+import { UtilityService } from 'src/app/services/utility.service';
 import { LoginComponent } from '../login/login.component';
 import { RegisterComponent } from '../register/register.component';
 
@@ -25,7 +26,7 @@ export class HeaderComponent implements OnInit {
       category: ["retro"]
     },
   ]
-  constructor(private navigationService: NavigationService) { }
+  constructor(private navigationService: NavigationService, public utilityService: UtilityService) { }
 
   ngOnInit(): void {
     //* Get Category List

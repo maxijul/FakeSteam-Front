@@ -1,3 +1,5 @@
+ <!--* Grid View -->
+
 <div class="grid-view" *ngIf="view === 'grid'">
    <div class="card text-center">
        <div class="card-header fw-bold fs-5 text-success">
@@ -5,7 +7,7 @@
        </div>
 
        <div class="overflow-hidden d-flex justify-content-center align-items-center">
-           <img src="../../assets/Images/{{ product.productCategory.category }}/{{ product.id }}/1.jpg" alt=""
+           <img src="../../../assets/Images/{{ product.productCategory.category }}/{{ product.id }}/1.jpg" alt=""
                 class="card-img-top" OpenProductDetails [productId]="product.id">
        </div>
 
@@ -26,19 +28,22 @@
            </h6>
        </div>
 
-       <div class="card-footer d-grid gap-2">
-           <button type="button" class="btn btn-outline-success">
-               Add to Cart
-           </button>
-       </div>
+       <div class="card-footer text-muted d-grid gap-2">
+        <button type="button" class="btn btn-outline-success" [disabled]="!utilityService.isLoggedIn()">
+            Add to Cart
+            <span *ngIf="!utilityService.isLoggedIn()">(Login First)</span>
+        </button>
+    </div>
    </div>
 </div>
+
+    <!--* List View -->
 
 <div class="list-view" *ngIf="view === 'list'">
    <div class="card">
        <div class="row g-0">
            <div class="col-md-4 overflow-hidden d-flex justify-content-center align-items-center">
-               <img src="../../assets/Images/{{product.productCategory.category}}/{{product.id}}/1.jpg"
+               <img src="../../../assets/Images/{{ product.productCategory.category }}/{{ product.id }}/1.jpg"
                     class="img-fluid rounded-start" alt="Product Image" OpenProductDetails [productId]="product.id">
            </div>
            <div class="col d-flex flex-column">
@@ -55,17 +60,18 @@
                <div class="card-body">
                    <h4 class="card-title text-muted">Pricing</h4>
                    <h2 class="card-title text-success">
-                       {{utilityService.applyDiscount(product.price, product.offer.discount)}}
+                       {{utilityService.applyDiscount(product.price, product.offer.discount) | currency}}
                        <span class="text-primary"> -{{product.offer.discount}}% </span>
                    </h2>
                    <h5 class="card-subtitle text-danger text-decoration-line-through">
-                       {{product.price}}
+                       {{product.price | currency}}
                    </h5>
                </div>
 
                <div class="card-footer text-muted d-grid gap-2">
-                   <button type="button" class="btn btn-outline-success">
+                   <button type="button" class="btn btn-outline-success" [disabled]="!utilityService.isLoggedIn()">
                        Add to Cart
+                       <span *ngIf="!utilityService.isLoggedIn()">(Login First)</span>
                    </button>
                </div>
            </div>
@@ -79,7 +85,7 @@
        <div class="row g-0">
 
            <div class="col-4 overflow-hidden d-flex justify-content-center align-items-center">
-               <img src="../../assets/Images/{{product.productCategory.category}}/{{product.id}}/1.jpg"
+               <img src="../../../assets/Images/{{ product.productCategory.category }}/{{ product.id }}/1.jpg"
                     class="img-fluid rounded-start" alt="Product Image" OpenProductDetails [productId]="product.id">
            </div>
            <div class="col-8">
@@ -103,7 +109,8 @@
    <div class="card text-center">
 
        <div class="overflow-hidden d-flex justify-content-center align-items-center">
-           <img src="../../assets/Images/{{product.productCategory.category}}/{{product.id}}/1.jpg" alt=""
+           <img src="../../../assets/Images/{{ product.productCategory.category }}/{{ product.id }}/1.jpg"
+                alt="productImage"
                 class="card-img-top" OpenProductDetails [productId]="product.id">
        </div>
 

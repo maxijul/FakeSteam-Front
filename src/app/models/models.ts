@@ -12,6 +12,37 @@ export interface NavigationItem {
    category: string[];
 }
 
+export interface User {
+   id: number;
+   firstName: string;
+   lastName: string;
+   email: string;
+   address: string;
+   mobile: string;
+   password: string;
+   createdAt: string;
+   modifiedAt: string;
+}
+
+export interface Product {
+   id: number;
+   title: string;
+   description: string;
+   productCategory: Category;
+   offer: Offer;
+   price: number;
+   quantity: number;
+   imageName: string;
+}
+
+export interface Review {
+   id: number;
+   user: User;
+   product: Product;
+   value: string;
+   createdAt: string;
+}
+
 //* Region Product
 
 export interface Offer {

@@ -5,7 +5,7 @@
 
       <div class="col-4">
          <div class="d-flex justify-content-center align-items-center m-5">
-            <img src="../../../assets/images/action/acBlackFlag.jpg" alt="" class="img-thumbnail">
+            <img src="../../../assets/Images/{{ product.productCategory.category }}/{{ product.id }}/1.jpg" alt="" class="w-100">
          </div>
 
          <!-- <div class="image-thumbnails d-flex justify-content-between align-items-center">
@@ -23,26 +23,30 @@
       <div class="col-8">
          <div class="card">
             <div class="card-header">
-               <h2>Header</h2>
+               <h2>{{ product.title | titlecase }}</h2>
             </div>
             <div class="card-body">
-               <h1 class="card-title text-success">Final Price
-                  <span class="text-primary">-20%</span>
+               <h1 class="card-title text-success">
+                  {{ utilityService.applyDiscount(product.price,product.offer.discount) | currency }}
+                  <span class="text-primary">{{ product.offer.discount }}%</span>
                </h1>
                <h4 class="card-subtitle text-danger text-decoration-line-through">
-                  Original Price
+                  {{ product.price | currency }}
                </h4>
             </div>
             <div class="card-body">
-               <h6 class="card-subtitle my-2 text-primary">11 products are available</h6>
+               <h6 class="card-subtitle my-2 text-primary"> {{ product.quantity }} products are available</h6>
                <div class="d-grid gap-2">
-                  <button type="button" class="btn btn-outline-success">Add to Cart</button>
+                  <button type="button" class="btn btn-outline-success" [disabled]="!utilityService.isLoggedIn()">
+                     Add to Cart
+                     <span *ngIf="!utilityService.isLoggedIn()" >(Login First)</span>
+                  </button>
                </div>
             </div>
             <div class="card-body">
                <h5 class="card-text">Description</h5>
                <ul class="list-group">
-                  <li class="list-group-item list-group-item-action" *ngFor="let item of [1,1,1,1]" >
+                  <li class="list-group-item list-group-item-action" *ngFor="let item of product.description.split('. ')" >
                      {{ item }}
                   </li>
                </ul>
@@ -58,7 +62,7 @@
          <h3 class="border border-secondary text-center py-2 my-rounded-corner w-25">Related Products</h3>
       </div>
       <div class="col-12">
-         <app-suggested-product></app-suggested-product>
+         <app-suggested-product [category]="product.productCategory" ></app-suggested-product>
       </div>
    </div>
 
@@ -69,14 +73,14 @@
       <div class="col p-3">
          <h3>Give Your Review</h3>
          <h5 class="mt-4">Write Your Review</h5>
-         <textarea class="w-75 p-2"></textarea>
+         <textarea class="w-75 p-2" [formControl]="reviewControl"></textarea>
          <div class="d-flex align-items-start">
-            <button type="button" class="btn btn-outline-secondary mt-4 me-5">Save Review</button>
+            <button type="button" class="btn btn-outline-secondary mt-4 me-5" (click)="submitReview()">Save Review</button>
 
             <div>
-               <h6 class="text-danger mt-4">Login first, then enter the review</h6>
-               <h6 class="text-danger">Review Cannot Be Empty</h6>
-               <h6 class="text-success">Review Saved Succesfully</h6>
+               <h6 class="text-danger mt-4" *ngIf="!utilityService.isLoggedIn()">Login first, then enter the review</h6>
+               <h6 class="text-danger" *ngIf="showError">Review Cannot Be Empty</h6>
+               <h6 class="text-success" *ngIf="reviewSaved">Review Saved Succesfully</h6>
             </div>
          </div>
       </div>
@@ -84,19 +88,19 @@
       <!--* Other Review -->
       <div class="col o-3">
          <h3>Other Reviews</h3>
-         <h6 *ngIf="1">No Reviews Yet</h6>
-         <div class="card mt-3" *ngFor="let review of [1,2,3]" >
+         <h6 *ngIf="otherReviews.length === 0">No Reviews Yet</h6>
+         <div class="card mt-3" *ngFor="let review of otherReviews" >
             <div class="card-header d-flex justify-content-between">
                <div class="card-text">
-                  Facundo
-                  Villalobo
+                  {{ review.user.firstName }}
+                  {{ review.user.lastName }}
                </div>
                <div class="card-text fst-italic">
-                  Reviewed On: <span class="fw-bold">{{ "22 Oct 2022" | date: "dd-MMM-yyyy" }}</span>
+                  Reviewed On: <span class="fw-bold">{{ review.createdAt | date: "dd-MMM-yyyy" }}</span>
                </div>
             </div>
             <div class="card-body">
-               <div class="card-text">Review</div>
+               <div class="card-text">{{ review.value }}</div>
             </div>
          </div>
 

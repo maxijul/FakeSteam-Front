@@ -27,13 +27,15 @@
 
       <div class="btn-group btn-group-lg me-2" role="group">
          <button type="button" class="btn btn-outline-light" 
-            data-bs-toggle="modal" data-bs-target="#generalmodal" (click)="openModal('login')">Login</button>
+            data-bs-toggle="modal" data-bs-target="#generalmodal" (click)="openModal('login')" *ngIf="!utilityService.isLoggedIn()">Login</button>
          <button type="button" class="btn btn-outline-light"
-            data-bs-toggle="modal" data-bs-target="#generalmodal" (click)="openModal('register')">Register</button>
-         <button type="button" class="btn btn-outline-light">Account</button>
-         <button type="button" class="btn btn-outline-light" routerLink="/cart">Cart</button>
-         <button type="button" class="btn btn-outline-light" routerLink="/order">Orders</button>
-         <button type="button" class="btn btn-outline-light">Logout</button>
+            data-bs-toggle="modal" data-bs-target="#generalmodal" (click)="openModal('register')" *ngIf="!utilityService.isLoggedIn()">Register</button>
+         <button type="button" class="btn btn-outline-light" *ngIf="utilityService.isLoggedIn()">Account</button>
+         <button type="button" class="btn btn-outline-light" routerLink="/cart"
+            *ngIf="utilityService.isLoggedIn()">Cart</button>
+         <button type="button" class="btn btn-outline-light" routerLink="/order"
+            *ngIf="utilityService.isLoggedIn()">Orders</button>
+         <button type="button" class="btn btn-outline-light" (click)="utilityService.logoutUser()" *ngIf="utilityService.isLoggedIn()">Logout</button>
       </div>
 
    </div>

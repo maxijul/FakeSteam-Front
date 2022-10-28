@@ -64,6 +64,30 @@
 
    </div>
 
+   <!--* Address -->
+   <div class="mb-3">
+      <label for="address" class="form-label">Address</label>
+      <input type="text" class="form-control" id="address" formControlName="address">
+
+      <!--* Errors -->
+      <div class="form-text text-danger" *ngIf="Address.errors?.['required'] && (Address.dirty || Address.touched)">
+         Address is Required
+      </div>
+
+   </div>
+
+      <!--* Mobile -->
+      <div class="mb-3">
+         <label for="mobile" class="form-label">Mobile</label>
+         <input type="text" class="form-control" id="mobile" formControlName="mobile">
+   
+         <!--* Errors -->
+         <div class="form-text text-danger" *ngIf="Mobile.errors?.['required'] && (Mobile.dirty || Mobile.touched)">
+            Mobile is required
+         </div>
+         
+      </div>
+
    <!--* Password and Repeat Password -->
    <div class="row">
       <div class="col mb-3">
@@ -101,7 +125,7 @@
    </div>
 
    <div class="mt-3 text-center">
-      <h5 class="text-success">Account Created</h5>
+      <h5 class="text-success"> {{ message }} </h5>
    </div>
 
 </form>
