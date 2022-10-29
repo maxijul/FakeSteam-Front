@@ -2,10 +2,6 @@
 
 <div class="grid-view" *ngIf="view === 'grid'">
    <div class="card text-center">
-       <div class="card-header fw-bold fs-5 text-success">
-           Header
-       </div>
-
        <div class="overflow-hidden d-flex justify-content-center align-items-center">
            <img src="../../../assets/Images/{{ product.productCategory.category }}/{{ product.id }}/1.jpg" alt=""
                 class="card-img-top" OpenProductDetails [productId]="product.id">
@@ -29,7 +25,8 @@
        </div>
 
        <div class="card-footer text-muted d-grid gap-2">
-        <button type="button" class="btn btn-outline-success" [disabled]="!utilityService.isLoggedIn()">
+        <button type="button" class="btn btn-outline-success" [disabled]="!utilityService.isLoggedIn()"
+        (click)="this.utilityService.addToCart(product)">
             Add to Cart
             <span *ngIf="!utilityService.isLoggedIn()">(Login First)</span>
         </button>
@@ -47,10 +44,6 @@
                     class="img-fluid rounded-start" alt="Product Image" OpenProductDetails [productId]="product.id">
            </div>
            <div class="col d-flex flex-column">
-               <div class="card-header text-center">
-                   Header
-               </div>
-
                <div class="card-body">
                    <h5 class="card-title title"> {{product.title}} </h5>
                    <p class="card-text description"> {{product.description}} </p>
@@ -69,7 +62,8 @@
                </div>
 
                <div class="card-footer text-muted d-grid gap-2">
-                   <button type="button" class="btn btn-outline-success" [disabled]="!utilityService.isLoggedIn()">
+                   <button type="button" class="btn btn-outline-success" [disabled]="!utilityService.isLoggedIn()"
+                   (click)="this.utilityService.addToCart(product)">
                        Add to Cart
                        <span *ngIf="!utilityService.isLoggedIn()">(Login First)</span>
                    </button>
@@ -79,7 +73,7 @@
    </div>
 </div>
 
-<!-- Cart Item View -->
+<!--* Cart Item View -->
 <div class="cart-item-view" *ngIf="view === 'currentCartItem'">
    <div class="card">
        <div class="row g-0">
@@ -92,11 +86,11 @@
                <div class="card-body">
                    <h5 class="card-title title"> {{product.title}} </h5>
                    <h5 class="card-title text-success">
-                       {{utilityService.applyDiscount(product.price, product.offer.discount)}}
+                       {{utilityService.applyDiscount(product.price, product.offer.discount) | currency}}
                        <span class="text-primary"> -{{product.offer.discount}}% </span>
                    </h5>
                    <h6 class="card-subtitle text-danger text-decoration-line-through">
-                       {{ product.price }}
+                       {{ product.price | currency}}
                    </h6>
                </div>
            </div>
@@ -119,3 +113,27 @@
        </div>
    </div>
 </div>
+
+<!--* Grid View -->
+
+<div class="grid-view" *ngIf="view === 'library'">
+    <div class="card text-center">
+        <div class="overflow-hidden d-flex justify-content-center align-items-center">
+            <img src="../../../assets/Images/{{ product.productCategory.category }}/{{ product.id }}/1.jpg" alt=""
+                 class="card-img-top" OpenProductDetails [productId]="product.id">
+        </div>
+ 
+        <div class="card-body">
+            <h5 class="card-title title"> {{product.title}} </h5>
+            <p class="card-text description"> {{product.description}} </p>
+        </div>
+ 
+        <div class="card-footer text-muted d-grid gap-2">
+         <button type="button" class="btn btn-outline-success" [disabled]="!utilityService.isLoggedIn()"
+         >
+             PLAY
+             <span *ngIf="!utilityService.isLoggedIn()">(Login First)</span>
+         </button>
+     </div>
+    </div>
+ </div>

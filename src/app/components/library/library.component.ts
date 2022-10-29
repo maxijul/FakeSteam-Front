@@ -4,11 +4,11 @@ import { NavigationService } from 'src/app/services/navigation.service';
 import { UtilityService } from 'src/app/services/utility.service';
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  selector: 'app-library',
+  templateUrl: './library.component.html',
+  styleUrls: ['./library.component.css']
 })
-export class CartComponent implements OnInit {
+export class LibraryComponent implements OnInit {
 
   usersCart: Cart = {
     id: 0,

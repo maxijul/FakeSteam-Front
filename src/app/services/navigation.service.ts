@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Category, User } from '../models/models';
+import { Category, Order, Payment, PaymentMethod, User } from '../models/models';
 import { map } from 'rxjs';
 
 @Injectable({
@@ -73,6 +73,35 @@ export class NavigationService {
   getAllReviewsOfProduct(productId: number) {
     let url = this.baseUrl + 'GetProductReviews/' + productId;
     return this.http.get(url);
+  }
+
+  addToCart(userId: number, productId: number) {
+    let url = `${this.baseUrl}InsertCartItem/${userId}/${productId}`
+
+    return this.http.post(url, null, { responseType: 'text' })
+  }
+
+  getActiveCartOfUser(userId: number) {
+    let url = this.baseUrl + 'GetActiveCartOfUser/' + userId
+    return this.http.get(url);
+  }
+
+  getAllPreviousCarts(userId: number) {
+    let url = this.baseUrl + 'GetAllPreviousCartsOfUser/' + userId;
+    return this.http.get(url);
+  }
+
+  getPaymentMethods() {
+    let url = this.baseUrl + "GetPaymentMethods";
+    return this.http.get<PaymentMethod[]>(url)
+  }
+
+  insertPayment(payment: Payment) {
+    return this.http.post(this.baseUrl + 'InsertPayment', payment, { responseType: 'text'})
+  }
+
+  insertOrder(order: Order) {
+    return this.http.post(this.baseUrl + 'InsertOrder', order)
   }
 
 }

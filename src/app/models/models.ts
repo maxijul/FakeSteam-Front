@@ -68,3 +68,47 @@ export interface Product {
 }
 
 //* endregion
+
+//* region Cart
+export interface CartItem {
+   id: number;
+   product: Product;
+}
+
+export interface Cart {
+   id: number;
+   user: User;
+   cartItems: CartItem[];
+   ordered: boolean;
+   orderedOn: string;
+}
+//* endregion
+
+//* region Payment and Orders
+export interface PaymentMethod {
+   id: number;
+   type: string;
+   provider: string;
+   available: boolean;
+   reason: string;
+}
+
+export interface Payment {
+   id: number;
+   user: User;
+   paymentMethod: PaymentMethod
+   totalAmount: number;
+   shippingCharges: number;
+   amountReduced: number;
+   amountPaid: number;
+   createdAt: string;
+}
+
+export interface Order {
+   id: number;
+   user: User;
+   cart: Cart;
+   payment: Payment;
+   createdAt: string;
+}
+//* endregion

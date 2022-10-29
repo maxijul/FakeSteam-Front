@@ -13,7 +13,8 @@ import { RegisterComponent } from '../register/register.component';
 export class HeaderComponent implements OnInit {
   @ViewChild('modalTitle') modalTitle!: ElementRef
   @ViewChild('container', {read: ViewContainerRef, static: true})
-  container!: ViewContainerRef 
+  container!: ViewContainerRef
+  cartItems: number = 0;
 
   navigationList: NavigationItem[] = [
     {
@@ -33,6 +34,20 @@ export class HeaderComponent implements OnInit {
     this.navigationService
     .getCategoryList()
     .subscribe()  
+
+    //* Cart
+    if (this.utilityService.isLoggedIn()) {
+      this.navigationService
+        .getActiveCartOfUser(this.utilityService.getUser().id)
+        .subscribe((res: any) => {
+          this.cartItems = res.cartItems.length;
+        })
+    }
+
+    this.utilityService.changeCart.subscribe((res: any) => {
+      if (parseInt(res) === 0) this.cartItems = 0
+      this.cartItems += parseInt(res);
+    });
   }
 
   openModal(name: string): void{

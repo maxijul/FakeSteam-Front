@@ -1,0 +1,17 @@
+
+<div class="my-container mx-auto border border-dark" >
+   
+
+   <div class="card mb-5" *ngFor="let cart of usersPreviousCarts" >
+
+      <div class="cart-body px-4 py-2">
+           <div class="row g-5">
+            <div class="col-2 px-2 py-2" *ngFor="let cartItem of cart.cartItems" >
+                  <app-product [view]="'library'" [product]="cartItem.product"></app-product>
+            </div>
+         </div>
+      </div>
+
+   </div>
+
+</div>

@@ -7,7 +7,7 @@ import { UtilityService } from '../../services/utility.service';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  @Input() view: 'grid' | 'list' | 'currentCartItem' | 'previousCartItem' = 'grid';
+  @Input() view: 'grid' | 'list' | 'currentCartItem' | 'previousCartItem' | 'library' = 'grid';
   @Input() product: Product = {
     id: 0,
     title: '',

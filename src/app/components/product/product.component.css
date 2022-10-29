@@ -37,3 +37,9 @@ img:hover {
    overflow: hidden;
    text-overflow: ellipsis;
 }
+
+.cart-item-view .title {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+}

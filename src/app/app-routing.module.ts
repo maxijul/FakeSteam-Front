@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CartComponent } from './components/cart/cart.component';
 import { HomeComponent } from './components/home/home.component';
+import { LibraryComponent } from './components/library/library.component';
 import { OrderComponent } from './components/order/order.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'product-details', component: ProductDetailsComponent},
   {path: 'cart', component: CartComponent},
   {path: 'order', component: OrderComponent},
+  {path: 'library', component: LibraryComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent},
 ];
