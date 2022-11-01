@@ -54,7 +54,8 @@ import { LibraryComponent } from './components/library/library.component';
         tokenGetter: () => {
           return localStorage.getItem('user')
         },
-        allowedDomains: ['localhost:7053']
+        //allowedDomains: ['localhost:7053']
+        allowedDomains: ['www.fakesteam.somee.com']
       }
     })
   ],

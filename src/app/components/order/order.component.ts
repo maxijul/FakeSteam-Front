@@ -150,7 +150,6 @@ export class OrderComponent implements OnInit {
       .insertPayment(payment)
       .subscribe((paymentResponse: any) => {
         payment.id = parseInt(paymentResponse);
-
         let order: Order = {
           id: 0,
           user: this.utilityService.getUser(),

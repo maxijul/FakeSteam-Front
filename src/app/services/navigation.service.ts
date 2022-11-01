@@ -7,7 +7,8 @@ import { map } from 'rxjs';
   providedIn: 'root'
 })
 export class NavigationService {
-  baseUrl = 'https://localhost:7053/api/Shopping/';
+  baseUrl = 'http://www.fakesteam.somee.com/api/Shopping/';
+  //baseUrl = 'https://localhost:7053/api/Shopping/';
 
 
   constructor(private http: HttpClient) { }

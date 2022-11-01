@@ -1,0 +1,7 @@
+{
+   "/api/*":{
+      "target": "http://www.fakesteam.somee.com",
+      "secure": false,
+      "logLevel": "debug"
+   }
+}
