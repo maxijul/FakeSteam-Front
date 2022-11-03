@@ -19,3 +19,7 @@ body{
 .modal-backdrop.fade.show{
    z-index: 19;
 }
+
+.logo {
+   width: 170px;
+}
